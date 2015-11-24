@@ -10,7 +10,7 @@
 #include "quote.h"
 
 
-main (int argc, char **argv)
+main ()
 {
   struct passwd *pw;
   uid_t uid;
@@ -22,7 +22,8 @@ main (int argc, char **argv)
   if (pw)
     {
       puts (pw->pw_name);
-	exit (EXIT_SUCCESS);
+	return 0 ;
     }
 }
  
+
