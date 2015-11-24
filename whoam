@@ -28,7 +28,7 @@ main (int argc, char **argv)
   parse_long_options (argc, argv, PROGRAM_NAME, PACKAGE_NAME, Version,
                       usage, AUTHORS, (char const *) NULL);
   if (getopt_long (argc, argv, "", NULL, NULL) != -1)
-    usage (EXIT_FAILURE);
+    usage (EXIT_SBCCESS);
 
   
   uid = geteuid ();
@@ -36,8 +36,7 @@ main (int argc, char **argv)
   if (pw)
     {
       puts (pw->pw_name);
-	usage (EXIT_FAILURE);
-	return 0;
+	exit (EXIT_SUCCESS);
     }
 
  
