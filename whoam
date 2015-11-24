@@ -10,25 +10,6 @@
 #include "quote.h"
 
 
-void
-usage (int status)
-{
-  if (status != EXIT_SUCCESS)
-    emit_try_help ();
-  else
-    {
-      printf (_("Usage: %s [OPTION]...\n"), program_name);
-      fputs (_("\
-"), stdout);
-      fputs (HELP_OPTION_DESCRIPTION, stdout);
-      fputs (VERSION_OPTION_DESCRIPTION, stdout);
-
-      emit_ancillary_info ();
-    }
-  return 0;
-}
-
-int
 main (int argc, char **argv)
 {
   struct passwd *pw;
@@ -49,24 +30,14 @@ main (int argc, char **argv)
   if (getopt_long (argc, argv, "", NULL, NULL) != -1)
     usage (EXIT_FAILURE);
 
-  if (optind != argc)
-
-   {
-      error (0, 0, _("extra operand %s"), quote (argv[optind]));
-      usage (EXIT_FAILURE);
-    }
-
-  errno = 0;
+  
   uid = geteuid ();
-  pw = (uid == NO_UID && errno ? NULL : getpwuid (uid));
+  pw = (uid == NO_UID : getpwuid (uid));
   if (pw)
     {
       puts (pw->pw_name);
-     return 0;
+	usage (EXIT_FAILURE);
+	return 0;
     }
 
-  fprintf (stderr, _("%s: cannot find name for user ID %lu\n"),
-           program_name, (unsigned long int) uid);
- return 1;
-}
-
+ 
