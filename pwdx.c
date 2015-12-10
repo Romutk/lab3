@@ -65,9 +65,20 @@ int main(int argc, char *argv[])
 			alloclen *= 2;
 			pathbuf = realloc(pathbuf, alloclen);
 		}
-		free(buf);
 
-			pathbuf[len] = 0;
-			s = pathbuf;
-	free(pathbuf);
-	return 0;
+			 if (len < 0) {
+                	        s = strerror( errno);
+                       		 retval =1 ;
+                        fprintf(stderr, "%s: %s\n", argv[i], s);
+                        continue;
+                } else {
+                        pathbuf[len] = 0;
+                        s = pathbuf;
+                }
+
+                printf("%s: %s\n", argv[i], s);
+        }
+        free(pathbuf);
+        return retval;
+}
+
