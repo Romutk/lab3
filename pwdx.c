@@ -33,13 +33,6 @@ int main(int argc, char *argv[])
 	};
 
 
-	while ((ch = getopt_long(argc, argv, "Vh", longopts, NULL)) != -1)
-		switch (ch) {
-		case 'h':
-			usage(stdout);
-		default:
-			usage(stderr);
-		}
 
 	argc -= optind;
 	argv += optind;
