@@ -1,15 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <limits.h>
 
 int main (int argc, char *argv[]) {
-	char *buf;
-	buf = malloc (128);
-	char *a;
+	char buf[1024];
+	char *b;
+	int a;
 
-
-	a = readlink("/proc/xxxx/cwd" , buf , 128);
-	printf ("%s\n",a);
+	sprintf(b,"proc/%s/cwd",argv[1]);
+	a = readlink(b,buf,PATH_MAX);
+	buf[a]=0;
+	printf ("%s:%s\n",argv[1],buf);
 	return 0;
 }
 
