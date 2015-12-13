@@ -6,11 +6,14 @@ int main (int argc, char *argv[]) {
 	char buf[1024];
 	char *b;
 	int a;
+	int c;
 
-	sprintf(b,"proc/%s/cwd",argv[1]);
+for (c=1; c<argc;,c++) {
+	sprintf(b,"proc/%s/cwd",argv[c]);
 	a = readlink(b,buf,PATH_MAX);
 	buf[a]=0;
-	printf ("%s:%s\n",argv[1],buf);
+	printf ("%s:%s\n",argv[c],buf);
+}
 	return 0;
 }
 
