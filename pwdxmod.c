@@ -9,7 +9,7 @@ int main (int argc, char *argv[]) {
 
 
 	a = readlink("/proc/xxxx/cwd" , buf , 128);
-	printf ("%s\n , a)
+	printf ("%s\n",a);
 	return 0;
 }
 
