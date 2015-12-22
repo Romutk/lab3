@@ -1,7 +1,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <funxxx.h>
+#include <mylibxxx.h>
 
 int main (int argc, char* argv[])
 {
