@@ -1,27 +1,23 @@
 #! /bin/bash
-# This is not an autoconf generated configure
 
 if ! [ -f /usr/bin/flex ]; then
  echo 'flex do not found'
  echo 'Please install first flex'
-echo 'sudo apt-get install flex'
+ echo 'sudo apt-get install flex' 
 exit 1
+fi
 
 
-if ! [ -f /usr/bin/flex ]; then
+ if ! [ -f /usr/bin/flex ]; then
  echo 'bison not found'
  echo 'Please install first bison'
  echo 'sudo apt-get install bison'
 exit 1
+fi
 
-
-
-
-
-
+# This is not an autoconf generated configure
 #
 INCLUDE=${1:-"$PWD/include"}
-
 # Make a temp directory in build tree.
 TMPDIR=$(mktemp -d config.XXXXXX)
 trap 'status=$?; rm -rf $TMPDIR; exit $status' EXIT HUP INT QUIT TERM
@@ -376,3 +372,5 @@ echo
 echo -n "docs:"
 check_docs
 echo
+
+
