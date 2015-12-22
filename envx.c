@@ -5,8 +5,8 @@
 
 int main (int argc, char* argv[])
 {
-char end_path=/environ
-int result = funxxx()
+char end_path="/environ";
+int result = funxxx();
 printf ("%s\n", target_path);
 return 0;
 }
