@@ -1,20 +1,33 @@
-#include <errno.h>
-#include <string.h>
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+//#include <mylibxxx.h>
 
-char * funxxx (char* spid,char*end_path,char * target_path,size_t limit)
-{
- char link_path[256]="/proc/";
- int len;
- 
- strcat(strcat(link_path,spid),end_path);
-    
-  /* Attempt to read the target of the symbolic link. */
- len = readlink (link_path, target_path, limit);
- printf("link_path='%s',target_path='%s',len=%i\n",link_path,target_path,len);
-   /* NUL-terminate the target path. */
-  target_path[len] = '\0';
-    
-  return target_path;
+
+char * funxxx (char *pid, char end_path, char *output, size_t limit) {
+	char str[80];
+
+// concatinate structure
+	strcpy(str, "/proc/");
+	strcat(str, pid);
+	strcat(str, end_path);
+
+
+	printf("%s\n",str);
+
+// read from file
+	char ch;
+	FILE *fp;
+	fp = fopen(str,"r");
+
+	int count = 0;
+	while( ( ch = fgetc(fp) ) != EOF ) {
+		if(count == limit)
+			continue;
+		output[count] = ch;
+		count++;
+	}
+
+	fclose(fp);
+	return output;
 }
