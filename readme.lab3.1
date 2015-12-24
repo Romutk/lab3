@@ -1,0 +1,67 @@
+Configure прошел успешно
+
+Проблема
+Makefile завершился с ошибкой
+make[1]: bison: Команда не найдена
+make[1]: *** [emp_ematch.yacc.c] Ошибка 127
+make[1]: Выход из каталога `/home/roma/lab3/AvalonTRPO/iproute2-3.1.0/tc'
+make: *** [all] Ошибка 2
+
+Возможное решение 
+По всей видимости нужно установить Bison
+roma@ubuntu-lab3:~/lab3/AvalonTRPO$ sudo apt-get install bison
+
+Проблема 
+
+make[1]: flex: Команда не найдена
+make[1]: *** [emp_ematch.lex.c] Ошибка 127
+make[1]: Выход из каталога `/home/roma/lab3/AvalonTRPO/iproute2-3.1.0/tc'
+make: *** [all] Ошибка 2
+
+Возможное решение 
+Нехватает пакета Flex
+roma@ubuntu-lab3:~/lab3/AvalonTRPO$ sudo apt-get install flex
+
+Проблема 
+arpd.c:19:20: фатальная ошибка: db_185.h: Нет такого файла или каталога
+компиляция прервана.
+make[1]: *** [arpd] Ошибка 1
+make[1]: Выход из каталога `/home/roma/lab3/AvalonTRPO/iproute2-3.1.0/misc'
+make: *** [all] Ошибка 2
+
+Возможное решение 
+Не хватает заголовка db_185.h
+Нужно найти нужную библиотеку и установить
+Интернет говорит что нужно поискать библиотеку libdb
+sudo apt-cache search libdb
+попробую последнюю версию dev
+roma@ubuntu-lab3:~/lab3/AvalonTRPO$ sudo apt-get install libdb5.1-dev
+
+
+Проблема
+Теперь вообще не понятно на что ругвется
+Попробовал проверить зависимости пакета и установить недостающее
+sudo apt-get build-dep iproute 
+ПОставилось еще куча всего. 
+Так как это стандартная команда, я думаю все проверки в бивать в configer смысла нет
+Пробую еще раз запустить make
+
+
+Утилита запускается
+Задача, ввести в configure проверку двух пакетов bison и flex
+Удалить эти пакеты из системы, проверить работоспособность дописанного configure,
+в процессе сборки пакета. 
+
+В процессе поиска решения последний проблемы с Make наше git каталог
+git://git.kernel.org/pub/scm/linux/kernel/git/shemminger/iproute2.git 
+
+Проверить лучше всего находятсял ли нужные файлы в нужных местах 
+roma@ubuntu-lab3:~/lab3/AvalonTRPO$ which bison
+/usr/bin/bison
+roma@ubuntu-lab3:~/lab3/AvalonTRPO$ which flex
+/usr/bin/flex
+
+Добавил проверку можно посмотреть в файле configure
+Все работает
+roma@ubuntu-lab3:~/lab3/AvalonTRPO/iproute2/misc$ ./ss -v
+ss utility, iproute2-ss151103
